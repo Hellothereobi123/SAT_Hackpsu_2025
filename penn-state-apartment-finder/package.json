@@ -1,19 +1,17 @@
 {
-  "name": "spot_api_rct",
+  "name": "penn-state-apartment-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
+    "@tailwindcss/cli": "^4.0.17",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
-    "firebase": "^11.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router": "^6.27.0",
-    "react-router-dom": "^6.27.0",
+    "lucide-react": "^0.485.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
-    "react-tabs": "^6.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -41,8 +39,9 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14"
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.3.0"
   }
 }
