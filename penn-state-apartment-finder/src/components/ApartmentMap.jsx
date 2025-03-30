@@ -160,7 +160,7 @@ const ApartmentMap = ({ apartments, filteredApartments }) => {
   // Add apartment markers when filteredApartments or map changes
   // Replace your current apartment markers useEffect with this corrected solution
 
-useEffect(() => {
+  useEffect(() => {
     if (!map) return;
     
     const updateMarkers = async () => {
@@ -178,17 +178,21 @@ useEffect(() => {
         
         // Then add markers for all currently filtered apartments
         filteredApartments.forEach(apt => {
-          // Get coordinates
-          let coords;
-          if (apt.coordinates) {
-            coords = apt.coordinates;
+          // Get coordinates - check for coords field first
+          let coordinates;
+          if (apt.coords && Array.isArray(apt.coords) && apt.coords.length === 2) {
+            // We have valid coords field with [lat, lng]
+            coordinates = apt.coords;
+          } else if (apt.coordinates) {
+            // Fallback to coordinates field if it exists
+            coordinates = apt.coordinates;
           } else {
-            // Generate coordinates based on distance
+            // Generate random coordinates based on distance if neither field exists
             const angle = Math.random() * Math.PI * 2;
             const distance = apt.distance || 1; // Miles
             const lat = pennStateCoords[0] + (distance * 0.014 * Math.cos(angle));
             const lng = pennStateCoords[1] + (distance * 0.018 * Math.sin(angle));
-            coords = [lat, lng];
+            coordinates = [lat, lng];
           }
           
           // Create marker icon
@@ -202,7 +206,7 @@ useEffect(() => {
           });
           
           // Create and add the marker
-          const marker = L.marker(coords, { icon: markerIcon })
+          const marker = L.marker(coordinates, { icon: markerIcon })
             .addTo(map)
             .bindPopup(`
               <div class="text-center font-bold text-blue-900">${apt.name}</div>
